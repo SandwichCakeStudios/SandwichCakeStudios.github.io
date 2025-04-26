@@ -1,0 +1,285 @@
+/* Basic Reset & Body Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a font */
+    background-color: #1a1a1a; /* Dark background */
+    color: #e0e0e0; /* Light text */
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    padding-top: 80px; /* Space for fixed header */
+}
+
+a {
+    color: #e0e0e0;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Header */
+.site-header {
+    position: fixed; /* Keep header at top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%; /* Padding around header items */
+    background-color: #111; /* Slightly different dark for header */
+    z-index: 1000;
+    border-bottom: 1px solid #333; /* Subtle separator */
+}
+
+/* Simple Image Grid Layout */
+.logo img {
+    display: grid;
+    /* Adjust grid columns for different looks */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; /* Gap between images */
+    width: 100%;
+    max-width: 100px; /* Max width for the image container */
+    margin: 0 auto;
+    z-index: 5; /* Below text */
+}
+
+.logo a {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #fff;
+}
+
+.main-nav ul {
+    display: flex;
+}
+
+.main-nav li {
+    margin-left: 25px; /* Space between nav items */
+}
+
+.main-nav a {
+    padding: 5px 0;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 2px solid transparent; /* For hover effect */
+}
+
+.main-nav a:hover {
+    color: #fff;
+    border-bottom-color: #fff; /* Underline on hover */
+}
+
+.cta-button {
+    background-color: #f0f0f0; /* Light button background */
+    color: #1a1a1a;         /* Dark text */
+    padding: 8px 18px;
+    border-radius: 20px;    /* Rounded corners */
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #ccc;
+}
+
+.menu-toggle {
+    display: none; /* Hidden by default on larger screens */
+    background: none;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+/* Fixed Side Elements */
+.fixed-left, .fixed-right {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 900;
+    display: flex;
+    align-items: center;
+}
+
+.fixed-left {
+    left: 20px; /* Adjust as needed */
+    transform-origin: top left;
+    transform: rotate(-90deg) translate(-50%, -100%); /* Rotate and position */
+    white-space: nowrap;
+    letter-spacing: 2px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+
+.fixed-right {
+    right: 20px; /* Adjust as needed */
+    flex-direction: column; /* Stack icons vertically */
+}
+
+.fixed-right a {
+    margin-bottom: 15px; /* Space between icons */
+    font-size: 1.2em; /* Adjust icon size */
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.fixed-right a:hover {
+    color: #fff;
+}
+
+
+/* Hero Section */
+.hero {
+    min-height: calc(100vh - 80px); /* Full viewport height minus header */
+    display: flex;
+    flex-direction: column; /* Stack text and images vertically on small screens */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 5%; /* Padding */
+    position: relative; /* Needed if you use absolute positioning for images later */
+    overflow: hidden; /* Hide parts of images that might overflow */
+}
+
+.hero-content {
+    margin-bottom: 40px; /* Space between text and images */
+    max-width: 700px; /* Limit text width */
+    z-index: 10; /* Keep text above images if they overlap */
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
+    margin-bottom: 20px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: #fff;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    max-width: 600px;
+    margin: 0 auto; /* Center paragraph */
+    color: #bbb;
+}
+
+/* Simple Image Grid Layout */
+.hero-images {
+    display: grid;
+    /* Adjust grid columns for different looks */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; /* Gap between images */
+    width: 100%;
+    max-width: 1000px; /* Max width for the image container */
+    margin: 0 auto;
+    z-index: 5; /* Below text */
+}
+
+/* You might want specific styles or positions for images */
+/* Example for a more complex layout (requires adjusting HTML structure too):
+.hero-images img:nth-child(1) { position: absolute; top: 10%; left: 5%; width: 30%; }
+.hero-images img:nth-child(2) { position: absolute; bottom: 15%; left: 20%; width: 25%; }
+... etc ...
+*/
+
+
+/* Responsive Styles */
+@media (max-width: 900px) {
+    .main-nav {
+        display: none; /* Hide nav links */
+        position: absolute;
+        top: 100%; /* Position below header */
+        left: 0;
+        width: 100%;
+        background-color: #222; /* Background for dropdown */
+        flex-direction: column; /* Stack links vertically */
+        padding: 15px 0;
+        border-top: 1px solid #333;
+    }
+
+    .main-nav.active {
+        display: flex; /* Show nav when active class is added */
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    .main-nav li {
+        margin: 10px 0; /* Vertical spacing */
+        margin-left: 0;
+    }
+
+    .menu-toggle {
+        display: block; /* Show hamburger icon */
+    }
+
+    /* Adjust hero layout if needed */
+    .hero-images {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 10px;
+    }
+
+    .fixed-left, .fixed-right {
+       display: none; /* Optionally hide side elements on small screens */
+    }
+}
+
+@media (min-width: 901px) {
+    /* Ensure nav is shown and menu toggle is hidden on large screens */
+    .main-nav {
+        display: block !important; /* Override potential inline styles from JS */
+        position: static;
+        background: none;
+        width: auto;
+        border: none;
+        padding: 0;
+    }
+     .main-nav ul {
+        flex-direction: row;
+     }
+     .main-nav li {
+        margin: 0;
+        margin-left: 25px;
+     }
+    .menu-toggle {
+        display: none;
+    }
+
+    /* Maybe use a flex layout for hero on larger screens */
+    .hero {
+        flex-direction: row; /* Side-by-side */
+        justify-content: space-around;
+        text-align: left;
+        align-items: center;
+    }
+    .hero-content {
+        margin-bottom: 0;
+        margin-right: 40px; /* Space between text and images */
+        text-align: left;
+        max-width: 50%; /* Adjust width */
+    }
+    .hero-images {
+         max-width: 45%; /* Adjust width */
+         /* If using grid: */
+         grid-template-columns: 1fr 1fr; /* Example 2-column grid */
+    }
+     .hero h1, .hero p {
+        margin-left: 0;
+        margin-right: 0;
+     }
+}
