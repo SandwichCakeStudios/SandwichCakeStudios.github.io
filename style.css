@@ -235,7 +235,9 @@ img {
     }
 
     .fixed-left, .fixed-right {
-       display: none; /* Optionally hide side elements on small screens */
+       /*display: none;  Optionally hide side elements on small screens */
+	   background-color: #1a1a1a;
+	   padding: 10px 0px 0px 10px;
     }
 }
 
