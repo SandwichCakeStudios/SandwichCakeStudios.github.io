@@ -1,0 +1,10 @@
+{
+  "name": "Sandwich Cake Studios",
+  "short_name": "Sandwich Cake Studios",
+  "description": "An Indie Studio From Sweden.",
+  "background_color": "#fff",
+  "theme_color": "#000",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait"
+}
