@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a font */
-    background-color: #1a1a1a; /* Dark background */
+    background-color: #111; /* Dark background */
     color: #e0e0e0; /* Light text */
     line-height: 1.6;
     overflow-x: hidden; /* Prevent horizontal scroll */
@@ -35,8 +35,20 @@ main {
   background-position: center;
   background-attachment: fixed;
   height: 100vh;
-  overflow: auto;
+  overflow-y: scroll;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+main::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+main {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 
 /* Header */
 .site-header {
@@ -161,6 +173,7 @@ main {
     padding: 40px 5%; /* Padding */
     position: relative; /* Needed if you use absolute positioning for images later */
     overflow: hidden; /* Hide parts of images that might overflow */
+	margin-bottom: -60px;
 }
 
 .hero-content {
@@ -191,9 +204,13 @@ main {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px; /* Gap between images */
     width: 100%;
-    max-width: 1000px; /* Max width for the image container */
     margin: 0 auto;
     z-index: 5; /* Below text */
+}
+
+.hero-images img {
+
+    max-width: 100px; /* Max width for the image container */
 }
 
 /* You might want specific styles or positions for images */
@@ -212,10 +229,10 @@ main {
         top: 100%; /* Position below header */
         left: 0;
         width: 100%;
-        background-color: #222; /* Background for dropdown */
+        background-color: #111; /* Background for dropdown */
         flex-direction: column; /* Stack links vertically */
         padding: 15px 0;
-        border-top: 1px solid #333;
+        border-top: 3px solid #333;
     }
 
     .main-nav.active {
@@ -242,12 +259,20 @@ main {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 10px;
     }
+	
+	.hero-images img {
+
+		max-width: 25px; 
+	}
 
     .fixed-left, .fixed-right {
        /*display: none;  Optionally hide side elements on small screens */
-	   background-color: #1a1a1a;
 	   padding: 10px 10px 0px 10px;
     }
+	
+	.fixed-right {
+		right: 0px; /* Adjust as needed */
+	}
 }
 
 @media (min-width: 901px) {
@@ -312,7 +337,7 @@ main {
     text-align: center;
     padding: 40px 0;
     margin-bottom: 40px;
-    border-bottom: 1px solid #333;
+    /*border-bottom: 1px solid #333;*/
 }
 
 .page-title-section h1 {
@@ -406,13 +431,13 @@ section {
 }
 
 .game-card {
-   background-color: #252525;
-	opacity: 0.9;
+    background-color: #2a2a2a; /* Card background */
     border-radius: 8px;
     overflow: hidden; /* Keep image corners rounded */
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+	opacity: 0.85;
 }
 .game-card:hover {
     transform: translateY(-5px);
@@ -475,12 +500,12 @@ section {
 }
 
 .plugin-card {
-    background-color: #252525;
-	opacity: 0.9;
+    background-color: #2a2a2a;
     padding: 25px;
     border-radius: 8px;
     border-left: 5px solid #4CAF50; /* Accent color */
     transition: background-color 0.3s ease;
+	opacity: 0.85;
 }
 .plugin-card:hover {
      background-color: #333;
@@ -525,80 +550,588 @@ section {
 }
 
 
-/* === News Page Styles === */
-.news-feed {
-    max-width: 900px; /* Limit width for readability */
-    margin: 0 auto;
-}
-
-.news-item {
-    background-color: #252525;
-	opacity: 0.9;
-    margin-bottom: 40px;
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column; /* Stack image and text */
-}
-
-@media (min-width: 768px) {
-    .news-item {
-        flex-direction: row; /* Side-by-side layout */
-    }
-    .news-item:nth-child(even) { /* Alternate layout */
-        flex-direction: row-reverse;
-    }
-     .news-item-image {
-        flex-basis: 40%; /* Adjust image width */
-        flex-shrink: 0;
-    }
-     .news-item-content {
-        flex-basis: 60%; /* Adjust text width */
-    }
-}
 
 
-.news-item-image img {
-    width: 100%;
-    height: 100%; /* Fill container height */
-    object-fit: cover;
-    display: block; /* Remove potential bottom space */
-}
-
-.news-item-content {
-    padding: 30px;
-}
-.news-item-content.full-width { /* Style for articles without images */
-     width: 100%;
-}
-
-.news-date {
-    display: block;
-    font-size: 0.85em;
-    color: #888;
-    margin-bottom: 10px;
-}
-
-.news-item h2 {
-    font-size: 1.5em;
-    margin-bottom: 15px;
-    color: #fff;
-    line-height: 1.3;
-}
-
-.news-item p {
-    color: #bbb;
-    margin-bottom: 20px;
-}
 
 
-/* === Footer Styles === */
+/* General Footer Styles */
 .site-footer {
-    background-color: #111; /* Darker footer */
-    padding: 25px 0;
-    margin-top: 50px; /* Space above footer */
+  background-color: #111; /* Dark background color */
+  color: #e0e0e0; /* Light text color for contrast */
+  padding: 50px 30px; /* Padding around the content */
+  font-family: Arial, sans-serif; /* Or choose a font that matches */
+  font-size: 0.9rem; /* Base font size */
+}
+
+/* Container for footer content */
+.site-footer .footer-container {
+  max-width: 1200px; /* Maximum width of the footer content */
+  margin: 0 auto; /* Center the container horizontally */
+  display: flex;
+  justify-content: space-between; /* Distribute space between columns */
+  gap: 30px; /* Space between columns */
+  flex-wrap: wrap; /* Allow columns to wrap onto the next line on smaller screens */
+}
+
+/* General styling for footer columns */
+.site-footer .footer-column {
+  flex: 1; /* Allow columns to grow and shrink */
+  min-width: 180px; /* Minimum width before wrapping */
+  margin-bottom: 20px; /* Space below columns when they wrap */
+}
+
+/* Specific styles for the first column (contact info) */
+.site-footer .footer-contact-info {
+  flex-basis: 30%; /* Suggest a slightly larger base width */
+}
+
+/* Placeholder for the logo */
+.site-footer .logo-placeholder {
+  background-color: #444; /* Placeholder color */
+  width: 120px; /* Adjust width as needed */
+  height: 5px; /* Adjust height as needed */
+  margin-bottom: 25px;
+}
+
+/* Sections within the columns */
+.site-footer .footer-section {
+  margin-bottom: 25px;
+}
+
+/* Styling for small headings (like 'Office location') */
+.site-footer .footer-heading {
+  color: #a0a0a0; /* Slightly muted color */
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+}
+
+/* Address text styling */
+.site-footer .location-info p {
+  margin-bottom: 4px; /* Small space between address lines */
+  color: #ffffff; /* Brighter text for main info */
+}
+
+/* List styling (for social and navigation links) */
+.site-footer ul {
+  list-style: none; /* Remove default bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.site-footer ul li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+/* Link styling */
+.site-footer a {
+  color: #ffffff; /* White link text */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.2s ease; /* Smooth color transition on hover */
+}
+
+.site-footer a:hover {
+  color: #f0e68c; /* Khaki or light yellow hover color - adjust as desired */
+  /* text-decoration: underline; */ /* Optional: Add underline on hover */
+}
+
+/* Specific styling for the main navigation links */
+.site-footer .footer-navigation ul li a {
+  font-size: 1.4rem; /* Larger font size */
+  font-weight: 500; /* Slightly bolder */
+}
+.site-footer .footer-navigation ul li {
+  margin-bottom: 15px; /* More space between nav items */
+}
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .site-footer .footer-container {
+    flex-direction: column; /* Stack columns vertically */
+    align-items: center; /* Center align items */
+    text-align: center; /* Center align text */
+  }
+
+  .site-footer .footer-column {
+    min-width: 100%; /* Make columns full width */
+    margin-bottom: 30px; /* Add space between stacked columns */
+    align-items: center;
+  }
+
+  .site-footer .footer-column:last-child {
+    margin-bottom: 0;
+  }
+
+  .site-footer .logo-placeholder {
+     margin-left: auto; /* Center the placeholder */
+     margin-right: auto;
+  }
+
+   /* Adjust nav layout for mobile if needed */
+  .site-footer .footer-navigation {
+     display: flex; /* Example: Arrange nav columns side-by-side */
+     justify-content: center;
+     gap: 40px;
+     width: 100%;
+  }
+    .site-footer .footer-navigation ul li a {
+     font-size: 1.2rem; /* Slightly smaller nav links */
+  }
+}
+
+/* Adjustments for very small screens if needed */
+@media (max-width: 480px) {
+    .site-footer .footer-navigation {
+     flex-direction: column; /* Stack nav columns on very small screens */
+     gap: 0px;
+  }
+   .site-footer .footer-navigation:last-child {
+     margin-bottom: 0; /* Remove margin from last item if stacking */
+  }
+}
+
+
+/* Style for the main section */
+.content-section {
+  background-color: #111; /* Dark background */
+  color: #ffffff; /* White text */
+  padding: 50px 20px; /* Vertical and horizontal padding */
+  font-family: sans-serif; /* Basic font, change if needed */
+}
+
+/* Flex container to arrange columns */
+.content-section .container {
+  display: flex;
+  align-items: center; /* Vertically align items */
+  gap: 40px; /* Space between text and image columns */
+  max-width: 1100px; /* Maximum width of the content */
+  margin: 0 auto; /* Center the container */
+  flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+}
+
+/* Styling for the text column */
+.content-section .text-column {
+  flex: 1; /* Allow column to grow */
+  min-width: 300px; /* Minimum width before wrapping */
+}
+
+/* Styling for the image column */
+.content-section .image-column {
+  flex: 1; /* Allow column to grow */
+  min-width: 300px; /* Minimum width before wrapping */
+}
+
+/* Styling for the heading */
+.content-section h2 {
+  /* Approximating the monospaced look from the image */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2.8rem; /* Large font size */
+  font-weight: normal; /* Normal font weight */
+  margin-bottom: 20px; /* Space below the heading */
+  letter-spacing: 1px; /* Slight spacing between letters */
+}
+
+/* Styling for the paragraph */
+.content-section p {
+  font-size: 1rem; /* Standard font size */
+  line-height: 1.6; /* Spacing between lines */
+  margin-bottom: 30px; /* Space below the paragraph */
+  max-width: 500px; /* Limit line length for readability */
+}
+
+/* Styling for the Call-to-Action button */
+.content-section .cta-button {
+  display: inline-block; /* Behaves like a block but stays inline */
+  background-color: #fde84f; /* Yellow background (approximated from image) */
+  color: #000000; /* Black text */
+  padding: 12px 28px; /* Vertical and horizontal padding */
+  text-decoration: none; /* Remove underline from link */
+  font-weight: bold; /* Bold text */
+  font-size: 0.95rem;
+  text-align: center;
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth background transition */
+}
+
+/* Hover effect for the button */
+.content-section .cta-button:hover {
+  background-color: #eacf3e; /* Slightly darker yellow on hover */
+}
+
+/* Styling for the image */
+.content-section .image-column img {
+  display: block; /* Remove extra space below image */
+  width: 100%; /* Make image responsive */
+  max-width: 100%; /* Ensure image doesn't exceed container */
+  height: auto; /* Maintain aspect ratio */
+  /*filter: grayscale(100%);  Make image black and white */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .content-section .container {
+    flex-direction: column; /* Stack columns vertically */
+    text-align: center; /* Center text */
+  }
+
+  .content-section .text-column {
+     margin-bottom: 30px; /* Add space below text when stacked */
+     display: flex; /* Use flex to center content */
+     flex-direction: column; /* Stack items vertically */
+     align-items: center; /* Center items horizontally */
+  }
+
+   .content-section h2 {
+      font-size: 2.2rem; /* Slightly smaller heading */
+   }
+
+   .content-section p {
+      max-width: 90%; /* Allow paragraph to be wider */
+   }
+}
+
+/* Styles for the container (assuming it's placed on a dark background) */
+.contact-intro-section {
+  padding: 60px 40px; /* Adjust padding as needed */
+  /* Add display: flex; gap: 30px; if combining with sidebar content */
+}
+
+/* Styles for the text content block */
+.contact-text-content {
+  color: #ffffff; /* White text */
+  font-family: Arial, sans-serif; /* Example font, adjust to match */
+}
+
+/* Styling for the smaller heading "Got any questions?" */
+.contact-text-content .contact-subheading {
+  color: #a0a0a0; /* Light grey color */
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+/* Styling for the main heading "Get in touch" */
+.contact-text-content h1 {
+  font-size: 5.5rem; /* Very large font size */
+  font-weight: 600; /* Semi-bold weight */
+  line-height: 1.1; /* Adjust line spacing for multi-line */
+  margin-bottom: 30px; /* Space below the heading */
+  color: #ffffff; /* Ensure it's white */
+}
+
+/* Styling for the descriptive paragraph */
+.contact-text-content .contact-info-paragraph {
+  font-size: 1rem;
+  line-height: 1.7; /* Generous line spacing */
+  color: #e0e0e0; /* Slightly off-white */
+  max-width: 520px; /* Limit paragraph width for readability */
+}
+
+/* Styling for links within the paragraph */
+.contact-text-content .contact-info-paragraph a {
+  color: #fde84f; /* Use the yellow color for prominence */
+  text-decoration: underline; /* Underline to clearly mark as link */
+  transition: color 0.2s ease;
+}
+
+.contact-text-content .contact-info-paragraph a:hover {
+  color: #ffffff; /* Change color on hover */
+  /* text-decoration: none; */ /* Optional: remove underline on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-intro-section {
+    padding: 40px 25px;
+  }
+
+  .contact-text-content h1 {
+    font-size: 4rem; /* Reduce heading size */
+  }
+
+  .contact-text-content .contact-info-paragraph {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-text-content h1 {
+    font-size: 3.2rem; /* Further reduce heading size */
+  }
+}
+
+
+/* Style for the entire news section */
+.news-section {
+  padding: 50px 25px;
+  max-width: 1200px; /* Control overall width */
+  margin: 30px auto; /* Center section */
+  font-family: Arial, sans-serif; /* Choose appropriate font */
+  color: #ffffff; /* Default text color on dark background */
+}
+
+/* Style for the header block */
+.news-header {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 50px; /* Space below header */
+  border-radius: 5px;
+}
+
+.news-header .news-subheading {
+  color: #a0a0a0; /* Grey sub-heading */
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.news-header h2 {
+ font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #ffffff;
+  
+}
+
+.news-header p {
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  line-height: 1.6;
+  color: #e0e0e0; /* Slightly off-white paragraph */
+  max-width: 650px; /* Limit text width */
+  margin: 0 auto; /* Center paragraph */
+}
+
+/* Grid layout for news items */
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+  gap: 35px; /* Space between grid cells */
+}
+
+/* Individual news item card */
+.news-item {
+  background-color: #2a2a2a; /* Card background */
+  border-radius: 5px;
+  overflow: hidden; /* Ensure image corners conform to border-radius */
+  opacity: 0.85;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.news-item:hover {
+  transform: translateY(-6px); /* Lift effect on hover */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4); /* Shadow on hover */
+  opacity: 1;
+}
+
+/* Make the link cover the entire item */
+.news-item a.news-item-link {
+   display: block;
+   color: inherit; /* Use text color from parent */
+   text-decoration: none;
+   height: 100%; /* Ensure link covers height */
+}
+
+/* News item image */
+.news-item svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Common aspect ratio for thumbnails */
+  object-fit: cover; /* Crop image to fit aspect ratio */
+}
+
+/* Content area below the image */
+.news-item-content {
+  padding: 18px 22px;
+}
+
+.news-item-date {
+  font-size: 0.8rem;
+  color: #a0a0a0;
+  margin-bottom: 8px;
+  text-transform: uppercase; /* Uppercase date */
+  letter-spacing: 0.5px;
+}
+
+.news-item-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Container for Load More button */
+.load-more-container {
     text-align: center;
-    color: #888;
-    font-size: 0.9em;
-    border-top: 1px solid #333;
+    padding-top: 40px; /* Space above button */
+}
+
+/* Load More button style */
+.load-more-button {
+    background-color: #fde84f; /* Yellow background */
+    color: #111; /* Dark text */
+    border: none;
+    padding: 14px 35px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.load-more-button:hover {
+    background-color: #eacf3e; /* Darker yellow */
+    transform: scale(1.03); /* Slight scale effect */
+}
+
+.load-more-button:active {
+    transform: scale(0.98); /* Click effect */
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .news-grid {
+    grid-template-columns: 1fr; /* Single column on smaller screens */
+    gap: 30px;
+  }
+
+  .news-header h2 {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-section {
+    padding: 30px 15px;
+  }
+
+  .news-header {
+    padding: 30px 15px;
+  }
+
+  .news-header h2 {
+    font-size: 2rem;
+  }
+
+  .news-header p {
+    font-size: 0.9rem;
+  }
+
+  .news-item-title {
+    font-size: 1.1rem;
+  }
+
+  .load-more-button {
+      padding: 12px 30px;
+      font-size: 0.95rem;
+  }
+}
+
+
+
+/* --- Header Section Styles --- */
+.press-room-header {
+  text-align: center;
+  padding: 50px 20px;
+  margin-bottom: 40px; /* Space below header */
+}
+
+.press-room-header h1 {
+  font-size: 2.5em; /* Large heading */
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.press-room-header p {
+  font-size: 1em;
+  color: #cccccc; /* Slightly dimmer text for description */
+  line-height: 1.5;
+}
+
+/* --- Asset Section Styles --- */
+.asset-section {
+  padding:50px; /* Add some horizontal padding */
+  margin-bottom: 50px; /* Space between sections */
+  background-color: #2a2a2a; /* Card background */
+ opacity: 0.85;
+}
+
+
+
+.asset-section h2 {
+  font-size: 1.8em;
+  margin-bottom: 30px; /* Space below section title */
+  font-weight: 500;
+  border-bottom: 1px solid #444; /* Subtle separator line */
+  padding-bottom: 10px;
+  color: #eeeeee;
+}
+
+/* --- Asset Grid Styles --- */
+.asset-grid {
+  display: grid;
+  /* Creates responsive columns: minimum 250px wide, max 1fr (takes equal space) */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px; /* Space between grid items */
+}
+
+/* --- Asset Item Styles --- */
+.asset-item {
+  /* Optional: Add a subtle background if needed, otherwise items blend */
+  /* background-color: #222; */
+  /* padding: 15px; */
+  text-align: left; /* Align text to the left */
+}
+
+.asset-item img {
+  display: block; /* Remove extra space below image */
+  width: 100%; /* Make image responsive */
+  max-width: 400px;
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 15px; /* Space below image */
+  /* Optional: Add a subtle effect on hover */
+  transition: opacity 0.3s ease;
+}
+
+.asset-item img:hover {
+  opacity: 0.85; /* Slight fade on hover */
+}
+
+.asset-item h3 {
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.asset-item .asset-link {
+  font-size: 0.9em;
+  color: #eacf3e; /* Lighter grey for link/info text */
+  text-decoration: underline; /* Remove underline */
+  display: block; /* Ensure it takes its own line */
+  
+}
+
+.asset-item .asset-link:hover {
+  color: #fde84f; /* Make link white on hover */
+  text-decoration: underline;
+}
+
+/* --- Responsive Adjustments (Optional) --- */
+@media (max-width: 768px) {
+ .asset-section {
+    padding: 0 20px; /* Less padding on smaller screens */
+  }
+ .asset-grid {
+    gap: 20px; /* Smaller gap on smaller screens */
+  }
+ .press-room-header h1 {
+    font-size: 2em;
+  }
+ .asset-section h2 {
+    font-size: 1.5em;
+  }
 }
