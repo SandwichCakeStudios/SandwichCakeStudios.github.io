@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+Sitemap: https://sandwichcakestudios.github.io/sitemap.xml
+
