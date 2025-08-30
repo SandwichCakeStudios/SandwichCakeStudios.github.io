@@ -428,6 +428,15 @@ section {
 	  .about-mission p {
 		font-size: 1.0em;
 	}
+	
+	.about-mission {
+    display: grid;
+    grid-template-columns: 1fr;
+    
+    div:nth-of-type(even) {
+        grid-column: 1;
+    }
+}
 }
 
 .team h2 {
