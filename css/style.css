@@ -8,14 +8,14 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Choose a font */
     background-color: #111; /* Dark background */
-    color: #e0e0e0; /* Light text */
+    color: #ffffff; /* Light text */
     line-height: 1.6;
     overflow-x: hidden; /* Prevent horizontal scroll */
     padding-top: 80px; /* Space for fixed header */
 }
 
 a {
-    color: #e0e0e0;
+    color: #ffffff;
     text-decoration: none;
 }
 
@@ -160,62 +160,69 @@ main::-webkit-scrollbar {
 
 /* Hero Section */
 .hero {
-    min-height: calc(100vh - 80px); /* Full viewport height minus header */
-    display: flex;
-    flex-direction: column; /* Stack text and images vertically on small screens */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 40px 5%; /* Padding */
-    position: relative; /* Needed if you use absolute positioning for images later */
-    overflow: hidden; /* Hide parts of images that might overflow */
-	margin-bottom: -60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centers children vertically */
+  min-height: 100vh; /* Full viewport height */
+  padding: 2rem;
+  text-align: center;
+  gap: 2rem; /* Space between image and content */
+  position: relative;
+  transform: translateY(-10%); /* Shifts content slightly upward to center the pivot point */
 }
 
-.hero-content {
-    margin-bottom: 40px; /* Space between text and images */
-    max-width: 700px; /* Limit text width */
-    z-index: 10; /* Keep text above images if they overlap */
-}
-
-.hero h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size */
-    margin-bottom: 20px;
-    line-height: 1.2;
-    font-weight: 600;
-    color: #fff;
-}
-
-.hero p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
-    max-width: 600px;
-    margin: 0 auto; /* Center paragraph */
-    color: #bbb;
-}
-
-/* Simple Image Grid Layout */
 .hero-images {
-    display: grid;
-    /* Adjust grid columns for different looks */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px; /* Gap between images */
-    width: 100%;
-    margin: 0 auto;
-    z-index: 5; /* Below text */
+  max-width: 100%;
 }
 
 .hero-images img {
-
-    max-width: 100px; /* Max width for the image container */
+  max-width: 100%;
+  height: auto;
+  display: block; /* Removes inline image spacing */
+  max-width: 300px; /* Adjust based on your logo size preference */
 }
 
-/* You might want specific styles or positions for images */
-/* Example for a more complex layout (requires adjusting HTML structure too):
-.hero-images img:nth-child(1) { position: absolute; top: 10%; left: 5%; width: 30%; }
-.hero-images img:nth-child(2) { position: absolute; bottom: 15%; left: 20%; width: 25%; }
-... etc ...
-*/
+.hero-content {
+  max-width: 800px; /* Limits content width for readability */
+}
 
+.hero-content h1 {
+  font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Media Queries for additional responsiveness */
+@media (max-width: 768px) {
+  .hero {
+    padding: 1rem;
+    gap: 1.5rem; /* Reduced gap for smaller screens */
+    transform: translateY(-8%); /* Slightly less shift for smaller screens */
+  }
+
+  .hero-images img {
+    max-width: 250px; /* Smaller logo on smaller screens */
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-images img {
+    max-width: 200px; /* Even smaller logo for mobile */
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.25rem, 3.5vw, 2rem);
+  }
+
+  .hero {
+    transform: translateY(-6%); /* Minimal shift for very small screens */
+  }
+}
 
 /* Responsive Styles */
 @media (max-width: 900px) {
@@ -250,16 +257,7 @@ main::-webkit-scrollbar {
         display: block; /* Show hamburger icon */
     }
 
-    /* Adjust hero layout if needed */
-    .hero-images {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 10px;
-    }
-	
-	.hero-images img {
-
-		max-width: 25px; 
-	}
+    
 
     .fixed-left, .fixed-right {
        /*display: none;  Optionally hide side elements on small screens 
@@ -296,28 +294,7 @@ main::-webkit-scrollbar {
         display: none;
     }
 
-    /* Maybe use a flex layout for hero on larger screens */
-    .hero {
-        flex-direction: row; /* Side-by-side */
-        justify-content: space-around;
-        text-align: left;
-        align-items: center;
-    }
-    .hero-content {
-        margin-bottom: 0;
-        margin-right: 40px; /* Space between text and images */
-        text-align: left;
-        max-width: 50%; /* Adjust width */
-    }
-    .hero-images {
-         max-width: 45%; /* Adjust width */
-         /* If using grid: */
-         grid-template-columns: 1fr 1fr; /* Example 2-column grid */
-    }
-     .hero h1, .hero p {
-        margin-left: 0;
-        margin-right: 0;
-     }
+    
 }
 
 /* === General Page Styles === */
@@ -348,9 +325,12 @@ main::-webkit-scrollbar {
 
 .page-title-section p {
     font-size: clamp(1rem, 2.5vw, 1.1rem);
-    color: #bbb;
+    color: #fff;
     max-width: 600px;
     margin: 0 auto;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+	font-weight: 500;
+ 
 }
 
 /* Simple 2-column grid */
@@ -380,13 +360,74 @@ section {
 }
 
 
+
+
+.about-mission > div {
+   
+    padding: 2em;
+   
+}
+
+.about-mission {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+    div:nth-of-type(even) {
+        grid-column: 2;
+    }
+}
+
+.about-mission ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+	padding-left: 1.25rem;
+}
+
+
+.about-mission li::marker{
+   font-size: 1.5rem;
+
+}
+
+.about-who {
+    
+}
+.about-vision {
+    grid-row: 2;   
+}
+.about-Promises {
+    grid-row: 3;
+}
+.about-End {
+    grid-row: 5;
+}
+
 /* === About Page Styles === */
 .about-mission h2 {
     margin-bottom: 15px;
     color: #eee;
+	font-size: 2em;
 }
+
+
 .about-mission p {
     margin-bottom: 20px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+	font-weight: 500;
+	font-size: 1.8em;
+}
+
+@media (max-width: 768px) {
+	.about-mission h2 {
+		font-size: 1.2em;
+	}
+	  .about-mission p {
+		font-size: 1.0em;
+	}
 }
 
 .team h2 {
@@ -807,7 +848,7 @@ section {
 
 /* Styling for the smaller heading "Got any questions?" */
 .contact-text-content .contact-subheading {
-  color: #a0a0a0; /* Light grey color */
+  color: #ffffff; /* Light grey color */
   font-size: 0.95rem;
   margin-bottom: 10px;
 }
@@ -825,7 +866,7 @@ section {
 .contact-text-content .contact-info-paragraph {
   font-size: 1rem;
   line-height: 1.7; /* Generous line spacing */
-  color: #e0e0e0; /* Slightly off-white */
+  color: #ffffff; /* Slightly off-white */
   max-width: 520px; /* Limit paragraph width for readability */
 }
 
@@ -897,7 +938,7 @@ section {
 .news-header p {
   font-size: clamp(1rem, 2.5vw, 1.1rem);
   line-height: 1.6;
-  color: #e0e0e0; /* Slightly off-white paragraph */
+  color: #ffffff; /* Slightly off-white paragraph */
   max-width: 650px; /* Limit text width */
   margin: 0 auto; /* Center paragraph */
 }
